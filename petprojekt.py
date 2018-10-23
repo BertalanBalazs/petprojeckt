@@ -18,21 +18,23 @@ def getch():
         termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
     return ch
 
+
 def get_menu_txts(file_name):
     with open(file_name, "r") as file:
         lines = file.readlines()
     return ''.join(lines)
+
 
 def start_menu():
     try:
         os.system("clear")
         print(get_menu_txts("Main menu.txt"))
         if getch().lower() == "f":
-            fix_songs(1)
+            songs_menu(1)
         elif getch().lower() == "v":
-            fix_songs(2)
+            songs_menu(2)
         elif getch().lower() == "j":
-            fix_songs(3)
+            songs_menu(3)
         else:
             raise ValueError
     except ValueError:
@@ -41,10 +43,14 @@ def start_menu():
         start_menu()
 
 
-def fix_songs(num):
+def songs_menu(num):
     os.system("clear")
     if num == 1:
         print(get_menu_txts("Flute menu.txt"))
+    elif num == 2:
+        print(get_menu_txts("Violin menu.txt"))
+    else:
+        print(get_menu_txts("ZÁMBÓ menu.txt"))
     if getch() == "p":
         if num == 1:
             play_song('Emotional_Titanic_Flute.mp3', num)
@@ -52,24 +58,19 @@ def fix_songs(num):
             play_song('bad_violin.mp3', num)
         else:
             play_song('Zámbó.mp3', num)
-    elif getch() == "s":
+    elif getch().lower() == "s":
         p.stop()
-    elif getch() == "q":
+    elif getch().lower() == "q":
         start_menu()
-    elif getch() == "f":
+    elif getch().lower() == "f":
         fixer_menu(num)
     else:
-        fix_songs(num)
+        songs_menu(num)
 
 
 def play_song(songname, num):
     os.system("clear")
-    player = """
-                 Enjoy it?? I don't think so...
-                 Fix it to your ear is not blooding in the further!
-                 
-                    Press("s") to stop and go back to the song menu."""
-    print(player)
+    print(get_menu_txts("PLAY menu.txt"))
     p = vlc.MediaPlayer(songname)
     p.play()
     while True:
@@ -132,7 +133,22 @@ def fixer_menu(num):
             sleep(4)
             fixer_game_two()
     elif int(num) == 3:
-        pass
+        question_one = input("Mond egy szót amiben benne van 'Zámbó Jimmy'?")
+        sleep(1)
+        if question_one in ["Koporsó", "koporsó", "koporso", "úrna", "isten", "király"]:
+            os.system("clear")
+            print("Így van! Habár elment, zenéivel örökre velünk marad!")
+            sleep(4)
+        elif question_one in ["?","??","nem tom", "passz", "nem tudom", "???"]:
+            print("Sajnos a válasz a koporsó! Emlékezzünk róla tisztelettel!")
+            sleep(4)
+        else:
+            print("Nem nem nem nyert most! Sajnos a válasz a koporsó! Emlékezzünk róla tisztelettel!")
+            sleep(4)
+        print("Change to english you want to fix jimmy's song don't you??!")
+        sleep(3)
+        print("Okey the task is coming for you!")
+        fixer_game_three()
 
 
 def fixer_game():
@@ -254,7 +270,11 @@ def fixer_game_two():
 
 
 def fixer_game_three():
-    pass
+    os.system("clear")
+    print("PREPARE FOR YOU BIGGEST CHALLENGE IN YOUR LIFE!")
+    sleep(3)
+    print("JIMMY NEM LEHET KIJAVÍTANI EMBER!!!!!!")
+    play_song('Zámbó.mp3', 3)
 
 
 def finish_game():
