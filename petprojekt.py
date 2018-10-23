@@ -18,21 +18,14 @@ def getch():
         termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
     return ch
 
+def get_menu_txts(file_name):
+    with open(file_name, "r") as file:
+        return file
 
 def start_menu():
     try:
         os.system("clear")
-        welcome = """
-                ___________________________________________
-                |   HI IN MY JUKEBOX AND ENJOY THE MUSIC  |
-                |                                         |
-                |               MAIN MENU                 |
-                |                                         | 
-                |    1. Fix the flute! (Press "f")        | 
-                |    2. Fix the violin! (Press "v")       | 
-                |    3. Fix Zámbó Jimmy! (Press "j")      | 
-                \________________________________________/"""
-        print(welcome)
+        get_menu_txts("Main menu.txt")
         if getch().lower() == "f":
             fix_songs(1)
         elif getch().lower() == "v":
@@ -256,7 +249,7 @@ def fixer_game_two():
                 fixer_game_two()
 
 
-fixer_game_two()
+#fixer_game_two()
 
 
 def fixer_game_three():
@@ -305,4 +298,4 @@ def congratulions(songname):
     start_menu()
 
 
-# start_menu()
+start_menu()
