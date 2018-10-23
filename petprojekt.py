@@ -20,12 +20,13 @@ def getch():
 
 def get_menu_txts(file_name):
     with open(file_name, "r") as file:
-        return file
+        lines = file.readlines()
+    return ''.join(lines)
 
 def start_menu():
     try:
         os.system("clear")
-        get_menu_txts("Main menu.txt")
+        print(get_menu_txts("Main menu.txt"))
         if getch().lower() == "f":
             fix_songs(1)
         elif getch().lower() == "v":
@@ -42,10 +43,9 @@ def start_menu():
 
 def fix_songs(num):
     os.system("clear")
-    fix_songs_menu = "PRESS 'P' FOR PLAY , PRESS 'F' FOR FIX THE SONG , PRESS 'Q' TO THE MAIN MENU"
-    print(fix_songs_menu)
     if getch() == "p":
         if num == 1:
+            print(get_menu_txts("Flute menu.txt"))
             play_song('Emotional_Titanic_Flute.mp3', num)
         elif num == 2:
             play_song('bad_violin.mp3', num)
