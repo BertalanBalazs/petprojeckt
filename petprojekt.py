@@ -43,9 +43,10 @@ def start_menu():
 
 def fix_songs(num):
     os.system("clear")
+    if num == 1:
+        print(get_menu_txts("Flute menu.txt"))
     if getch() == "p":
         if num == 1:
-            print(get_menu_txts("Flute menu.txt"))
             play_song('Emotional_Titanic_Flute.mp3', num)
         elif num == 2:
             play_song('bad_violin.mp3', num)
