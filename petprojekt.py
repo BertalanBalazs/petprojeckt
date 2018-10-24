@@ -77,7 +77,7 @@ def play_song(songname, num):
     p.play()
     while True:
         try:
-            if getch() == "s":
+            if getch().lower() == "s":
                 p.stop()
                 songs_menu(num)
                 False
@@ -134,7 +134,7 @@ def fixer_menu(num):
             sleep(2)
             print("Lássuk a következő szintet!")
             sleep(4)
-            fixer_game_two()
+            final_musicar_game(num)
     elif int(num) == 3:
         question_one = input("Mond egy szót amiben benne van 'Zámbó Jimmy'?")
         sleep(1)
@@ -283,46 +283,66 @@ def fixer_game_three():
 def final_musicar_game(num):
     if num == 1:
         print(get_menu_txts("music_player_flute.txt"))
-        key = getch().lower()
-        if key == "a":
-            pass
-        elif key == "s":
-            pass
-        elif key == "d":
-            pass
-        elif key == "f":
-            pass
-        elif key == "j":
-            pass
-        elif key == "k":
-            pass
-        elif key == "l":
-            pass
-        elif key == "é":
-            pass
-        elif key == "q":
-            finish_game()
+        while True:
+            key = getch().lower()
+            if key == "a":
+                p = vlc.MediaPlayer("flute_a.mp3")
+                p.play()
+            elif key == "s":
+                p = vlc.MediaPlayer("flute_s.mp3")
+                p.play()
+            elif key == "d":
+                p = vlc.MediaPlayer("flute_d.mp3")
+                p.play()
+            elif key == "f":
+                p = vlc.MediaPlayer("flute_f.mp3")
+                p.play()
+            elif key == "j":
+                p = vlc.MediaPlayer("flute_j.mp3")
+                p.play()
+            elif key == "k":
+                p = vlc.MediaPlayer("flute_k.mp3")
+                p.play()
+            elif key == "l":
+                p = vlc.MediaPlayer("flute_l.mp3")
+                p.play()
+            elif key == "é":
+                p = vlc.MediaPlayer("flute_é.mp3")
+                p.play()
+            elif key == "q":
+                False
+                finish_game(num)
     if num == 2:
         print(get_menu_txts("music_player_violin.txt"))
-        key = getch().lower()
-        if key == "a":
-            pass
-        elif key == "s":
-            pass
-        elif key == "d":
-            pass
-        elif key == "f":
-            pass
-        elif key == "j":
-            pass
-        elif key == "k":
-            pass
-        elif key == "l":
-            pass
-        elif key == "é":
-            pass
-        elif key == "q":
-            finish_game()
+        while True:
+            key = getch().lower()
+            if key == "a":
+                p = vlc.MediaPlayer("violin_a.mp3")
+                p.play()
+            elif key == "s":
+                p = vlc.MediaPlayer("violin_s.mp3")
+                p.play()
+            elif key == "d":
+                p = vlc.MediaPlayer("violin_d.mp3")
+                p.play()
+            elif key == "f":
+                p = vlc.MediaPlayer("violin_f.mp3")
+                p.play()
+            elif key == "j":
+                p = vlc.MediaPlayer("violin_j.mp3")
+                p.play()
+            elif key == "k":
+                p = vlc.MediaPlayer("violin_k.mp3")
+                p.play()
+            elif key == "l":
+                p = vlc.MediaPlayer("violin_l.mp3")
+                p.play()
+            elif key == "é":
+                p = vlc.MediaPlayer("violin_é.mp3")
+                p.play()
+            elif key == "q":
+                False
+                finish_game(num)
     if num == 3:
         print(get_menu_txts("music_player_piano.txt"))
         while True:
@@ -337,21 +357,26 @@ def final_musicar_game(num):
                 p = vlc.MediaPlayer("piano_d.mp3")
                 p.play()
             elif key == "f":
-                pass
+                p = vlc.MediaPlayer("piano_f.mp3")
+                p.play()
             elif key == "j":
-                pass
+                p = vlc.MediaPlayer("piano_j.mp3")
+                p.play()
             elif key == "k":
-                pass
+                p = vlc.MediaPlayer("piano_k.mp3")
+                p.play()
             elif key == "l":
-                pass
+                p = vlc.MediaPlayer("piano_l.mp3")
+                p.play()
             elif key == "é":
-                pass
+                p = vlc.MediaPlayer("piano_é.mp3")
+                p.play()
             elif key == "q":
                 False
-                finish_game()
+                finish_game(num)
 
 
-def finish_game():
+def finish_game(num):
     os.system("clear")
     welcome = """
               ______________________________________________
@@ -374,7 +399,12 @@ def finish_game():
             sleep(1)
             print(i)
         print("START")
-        congratulions_player('titanic_fixed.mp3', 1)
+        if num == 1:
+            congratulions_player('titanic_fixed.mp3', num)
+        elif num == 2:
+            congratulions_player('good_violin.mp3', num)
+        else:
+            congratulions_player('zámbó.mp3', num)
     else:
         start_menu()
 
