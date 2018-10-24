@@ -53,7 +53,7 @@ def songs_menu(num):
         print(get_menu_txts("ZÁMBÓ menu.txt"))
     if getch() == "p":
         if num == 1:
-            play_song('Emotional_Titanic_Flute.mp3', num)
+            play_song('Emotional_Flute.mp3', num)
         elif num == 2:
             play_song('bad_violin.mp3', num)
         else:
