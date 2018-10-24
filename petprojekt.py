@@ -59,7 +59,7 @@ def songs_menu(num):
         elif num == 2:
             play_song('bad_violin.mp3', num)
         else:
-            play_song('Zámbó.mp3', num)
+            play_song('Zámbó_first.mp3', num)
     elif key == "s":
         p.stop()
     elif key == "q":
