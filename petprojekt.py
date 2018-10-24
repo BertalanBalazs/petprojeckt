@@ -274,7 +274,7 @@ def fixer_game_three():
     print("PREPARE FOR YOU BIGGEST CHALLENGE IN YOUR LIFE!")
     sleep(3)
     print("JIMMY NEM LEHET KIJAVÍTANI EMBER!!!!!!")
-    play_song('Zámbó.mp3', 3)
+    congratulions_player('Zámbó.mp3', 3)
 
 
 def finish_game():
@@ -300,23 +300,31 @@ def finish_game():
             sleep(1)
             print(i)
         print("START")
-        congratulions('titanic_fixed.mp3')
+        congratulions_player('titanic_fixed.mp3', 1)
     else:
         start_menu()
 
 
-def congratulions(songname):
-    Final = """
-            ____________________________________________________________________________________________________________
-            |                                                                                                          |
-            |                    YOU SUCCESFULLY FIXED THE SONG!! YOU'RE ABSOLUTELY INCREDIBLE!!!!!                    |
-            \__________________________________________________________________________________________________________/ """
-    print(Final)
+def congratulions_player(songname, num):
+    os.system("clear")
+    if num == 3:
+        print(get_menu_txts("Jimmy_player.txt"))
+    else:    
+        print(get_menu_txts("Congratulaion_player.txt"))
     p = vlc.MediaPlayer(songname)
     p.play()
+    while True:
+        try:
+            if getch() == "s":
+                p.stop()
+                start_menu()
+                False
+            else:
+                raise ValueError
+        except ValueError:
+            print("Invalid value!")
+            continue
     sleep(15)
-    p.stop()
-    start_menu()
-
+    
 
 start_menu()
