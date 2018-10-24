@@ -142,7 +142,7 @@ def fixer_menu(num):
             os.system("clear")
             print("Így van! Habár elment, zenéivel örökre velünk marad!")
             sleep(4)
-        elif question_one in ["?","??","nem tom", "passz", "nem tudom", "???"]:
+        elif question_one in ["?", "??", "nem tom", "passz", "nem tudom", "???"]:
             print("Sajnos a válasz a koporsó! Emlékezzünk róla tisztelettel!")
             sleep(4)
         else:
@@ -151,7 +151,7 @@ def fixer_menu(num):
         print("Change to english you want to fix jimmy's song don't you??!")
         sleep(3)
         print("Okey the task is coming for you!")
-        fixer_game_three()
+        final_musicar_game(num)
 
 
 def fixer_game():
@@ -191,7 +191,6 @@ def fixer_game():
                         start_menu()
         except ValueError:
             print("Incorret Value!")
-
 
 
 """def fixer_game_two():
@@ -270,7 +269,7 @@ def fixer_game():
                 fixer_game_two()"""
 
 
-#fixer_game_two()
+# fixer_game_two()
 
 
 def fixer_game_three():
@@ -326,26 +325,30 @@ def final_musicar_game(num):
             finish_game()
     if num == 3:
         print(get_menu_txts("music_player_piano.txt"))
-        key = getch().lower()
-        if key == "a":
-            pass
-        elif key == "s":
-            pass
-        elif key == "d":
-            pass
-        elif key == "f":
-            pass
-        elif key == "j":
-            pass
-        elif key == "k":
-            pass
-        elif key == "l":
-            pass
-        elif key == "é":
-            pass
-        elif key == "q":
-            finish_game()
-
+        while True:
+            key = getch().lower()
+            if key == "a":
+                p = vlc.MediaPlayer("piano_a.mp3")
+                p.play()
+            elif key == "s":
+                p = vlc.MediaPlayer("piano_s.mp3")
+                p.play()
+            elif key == "d":
+                p = vlc.MediaPlayer("piano_d.mp3")
+                p.play()
+            elif key == "f":
+                pass
+            elif key == "j":
+                pass
+            elif key == "k":
+                pass
+            elif key == "l":
+                pass
+            elif key == "é":
+                pass
+            elif key == "q":
+                False
+                finish_game()
 
 
 def finish_game():
@@ -380,7 +383,7 @@ def congratulions_player(songname, num):
     os.system("clear")
     if num == 3:
         print(get_menu_txts("Jimmy_player.txt"))
-    else:    
+    else:
         print(get_menu_txts("Congratulation_player.txt"))
     p = vlc.MediaPlayer(songname)
     p.play()
@@ -396,6 +399,6 @@ def congratulions_player(songname, num):
             print("Invalid value!")
             continue
     sleep(15)
-    
+
 
 start_menu()
