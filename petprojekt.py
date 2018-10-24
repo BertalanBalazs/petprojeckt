@@ -29,11 +29,12 @@ def start_menu():
     try:
         os.system("clear")
         print(get_menu_txts("Main menu.txt"))
-        if getch().lower() == "f":
+        key = getch().lower()
+        if key == "f":
             songs_menu(1)
-        elif getch().lower() == "v":
+        elif key == "v":
             songs_menu(2)
-        elif getch().lower() == "j":
+        elif key == "j":
             songs_menu(3)
         else:
             raise ValueError
@@ -51,18 +52,19 @@ def songs_menu(num):
         print(get_menu_txts("Violin menu.txt"))
     else:
         print(get_menu_txts("ZÁMBÓ menu.txt"))
-    if getch() == "p":
+    key = getch().lower()
+    if key == "p":
         if num == 1:
             play_song('Emotional_Flute.mp3', num)
         elif num == 2:
             play_song('bad_violin.mp3', num)
         else:
             play_song('Zámbó.mp3', num)
-    elif getch().lower() == "s":
+    elif key == "s":
         p.stop()
-    elif getch().lower() == "q":
+    elif key == "q":
         start_menu()
-    elif getch().lower() == "f":
+    elif key == "f":
         fixer_menu(num)
     else:
         songs_menu(num)
@@ -105,16 +107,17 @@ def fixer_menu(num):
                 os.system("clear")
                 print("Okay the finish comes for you!!")
                 sleep(0.7)
-                print("You have to drink a glass of water before you start it!")
+                print("The next game is uppon on your creativity!")
                 sleep(4)
-                finish_game()
+                final_musicar_game(num)
+                sleep(10)
         else:
             print("Do you want to try this again? \n Press 'y' to try again \n Press 'n' to go back to the main menu.")
             if getch() == "y":
                 os.system("clear")
                 print("Good, gooood!")
                 sleep(3)
-                fixer_menu()
+                fixer_menu(num)
             elif getch() == "n":
                 os.system("clear")
                 print("Az vesse rám az első követ aki még nem csinált ilyet MI??")
@@ -123,11 +126,11 @@ def fixer_menu(num):
             else:
                 print("What are you want to do? Please enter y or n!")
     elif int(num) == 2:
-        question_one = input("Milyen tipusú hangszeren játszik a vonós?")
-        if question_one in ["vonós", "vonóson", "hegedűn"]:
+        question_one = input("What is the common in the ÚJPEST FC and Mága Zoltán?")
+        if question_one in ["violin"]:
             os.system("clear")
             sleep(2)
-            print("Ha én lettem volna a tehelyben nem tudtam volna, Brávó!")
+            print("Vég az eszed mint a menzás kés, Brávó!")
             sleep(2)
             print("Lássuk a következő szintet!")
             sleep(4)
@@ -190,7 +193,8 @@ def fixer_game():
             print("Incorret Value!")
 
 
-def fixer_game_two():
+
+"""def fixer_game_two():
     row = '♬ ' * 20 + '\n'
     table = [list(row) for i in range(9)]
     even_nums = [num for num in range((len(row)-2)) if num % 2 == 0]
@@ -263,7 +267,7 @@ def fixer_game_two():
             except IndexError:
                 print("You lose! I think you really enjoy the sitthy songs man!")
                 sleep(8)
-                fixer_game_two()
+                fixer_game_two()"""
 
 
 #fixer_game_two()
@@ -275,6 +279,73 @@ def fixer_game_three():
     sleep(3)
     print("JIMMY NEM LEHET KIJAVÍTANI EMBER!!!!!!")
     congratulions_player('Zámbó.mp3', 3)
+
+
+def final_musicar_game(num):
+    if num == 1:
+        print(get_menu_txts("music_player_flute.txt"))
+        key = getch().lower()
+        if key == "a":
+            pass
+        elif key == "s":
+            pass
+        elif key == "d":
+            pass
+        elif key == "f":
+            pass
+        elif key == "j":
+            pass
+        elif key == "k":
+            pass
+        elif key == "l":
+            pass
+        elif key == "é":
+            pass
+        elif key == "q":
+            finish_game()
+    if num == 2:
+        print(get_menu_txts("music_player_violin.txt"))
+        key = getch().lower()
+        if key == "a":
+            pass
+        elif key == "s":
+            pass
+        elif key == "d":
+            pass
+        elif key == "f":
+            pass
+        elif key == "j":
+            pass
+        elif key == "k":
+            pass
+        elif key == "l":
+            pass
+        elif key == "é":
+            pass
+        elif key == "q":
+            finish_game()
+    if num == 3:
+        print(get_menu_txts("music_player_piano.txt"))
+        key = getch().lower()
+        if key == "a":
+            pass
+        elif key == "s":
+            pass
+        elif key == "d":
+            pass
+        elif key == "f":
+            pass
+        elif key == "j":
+            pass
+        elif key == "k":
+            pass
+        elif key == "l":
+            pass
+        elif key == "é":
+            pass
+        elif key == "q":
+            finish_game()
+
 
 
 def finish_game():
@@ -310,12 +381,12 @@ def congratulions_player(songname, num):
     if num == 3:
         print(get_menu_txts("Jimmy_player.txt"))
     else:    
-        print(get_menu_txts("Congratulaion_player.txt"))
+        print(get_menu_txts("Congratulation_player.txt"))
     p = vlc.MediaPlayer(songname)
     p.play()
     while True:
         try:
-            if getch() == "s":
+            if getch().lower() == "s":
                 p.stop()
                 start_menu()
                 False
