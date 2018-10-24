@@ -77,7 +77,7 @@ def play_song(songname, num):
         try:
             if getch() == "s":
                 p.stop()
-                fix_songs(num)
+                songs_menu(num)
                 False
             else:
                 raise ValueError
