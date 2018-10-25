@@ -6,6 +6,7 @@ import termios
 import tty
 import sys
 import random
+from pygame import *
 
 
 def getch():
@@ -25,6 +26,10 @@ def get_menu_txts(file_name):
     return ''.join(lines)
 
 
+def exit():
+    return
+
+
 def start_menu():
     try:
         os.system("clear")
@@ -36,6 +41,8 @@ def start_menu():
             songs_menu(2)
         elif key == "j":
             songs_menu(3)
+        elif key == "q":
+            exit()        
         else:
             raise ValueError
     except ValueError:
@@ -92,25 +99,21 @@ def play_song(songname, num):
 def fixer_menu(num):
     os.system("clear")
     if int(num) == 1:
-        question_one = input("What was shunk at the Tinanic catasrophe?")
-        if question_one.lower() in ["titanic", "ship", "dicaprio"]:
+        os.system("clear")
+        sleep(2)
+        print("In the next game you have to find the odd in outs on the table!")
+        sleep(6)
+        if fixer_game() == "yes":
+            sleep(2)
+            print("Nice job!!")
+            sleep(0.7)
             os.system("clear")
-            sleep(2)
-            print("Honestly, you're a genious!")
-            sleep(2)
-            print("Let see the next game!")
+            print("Okay the finish comes for you!!")
+            sleep(0.7)
+            print("The next game is uppon on your creativity!")
             sleep(4)
-            if fixer_game() == "yes":
-                sleep(2)
-                print("Nice job!!")
-                sleep(0.7)
-                os.system("clear")
-                print("Okay the finish comes for you!!")
-                sleep(0.7)
-                print("The next game is uppon on your creativity!")
-                sleep(4)
-                final_musicar_game(num)
-                sleep(10)
+            final_musicar_game(num)
+            sleep(10)
         else:
             print("Do you want to try this again? \n Press 'y' to try again \n Press 'n' to go back to the main menu.")
             if getch() == "y":
@@ -120,8 +123,11 @@ def fixer_menu(num):
                 fixer_menu(num)
             elif getch() == "n":
                 os.system("clear")
-                print("Az vesse rám az első követ aki még nem csinált ilyet MI??")
-                sleep(8)
+                print("No problem, but seriously no problem!!")
+                sleep(4)
+                os.system("clear")
+                print("loser chhhh...")
+                sleep(3)
                 start_menu()
             else:
                 print("What are you want to do? Please enter y or n!")
@@ -136,26 +142,13 @@ def fixer_menu(num):
             sleep(4)
             final_musicar_game(num)
     elif int(num) == 3:
-        question_one = input("Mond egy szót amiben benne van 'Zámbó Jimmy'?")
-        sleep(1)
-        if question_one in ["Koporsó", "koporsó", "koporso", "úrna", "isten", "király"]:
-            os.system("clear")
-            print("Így van! Habár elment, zenéivel örökre velünk marad!")
-            sleep(4)
-        elif question_one in ["?", "??", "nem tom", "passz", "nem tudom", "???"]:
-            print("Sajnos a válasz a koporsó! Emlékezzünk róla tisztelettel!")
-            sleep(4)
-        else:
-            print("Nem nem nem nyert most! Sajnos a válasz a koporsó! Emlékezzünk róla tisztelettel!")
-            sleep(4)
-        print("Change to english you want to fix jimmy's song don't you??!")
-        sleep(3)
-        print("Okey the task is coming for you!")
+        print("Okay the task is coming for you!")
+        sleep(4)
         final_musicar_game(num)
 
 
 def fixer_game():
-    life = 2
+    life = 3
     boolen = True
     while boolen:
         os.system("clear")
@@ -164,33 +157,57 @@ def fixer_game():
         even_nums = [num for num in range((len(row)-2)) if num % 2 == 0]
         print("\n LIFE:", life, "\n")
         random_number = random.randint(6, 12)
-        print(random_number)
         for i in range(random_number):
             table[random.randint(0, 8)][random.choice(even_nums)] = "♫"
         for row in table:
             print(''.join(row))
-        guess_number = input("Hány kakukktojást látsz a táblán?")
-        try:
-            if int(guess_number) == random_number:
-                boolen = False
-                print("That correct! You're awesome!")
-                return "yes"
-            else:
-                life -= 1
-                if life == 0:
-                    print("You don't have enough life sorry! Goodbye!")
-                    False
-                    start_menu()
+        if getch().lower() == "s":
+            print(random_number)
+            guess_number = input("How many odd ones you can see on the table?")
+            try:
+                if int(guess_number) == random_number:
+                    boolen = False
+                    print("That correct! You're awesome!")
+                    return "yes"
                 else:
-                    print("Do you want to play again? One life is down! \n Press 'y' for again! \n Press 'n' for go to the main menu!")
-                    if getch() == "y":
-                        continue
-                    else:
-                        print("Nothing problem! :D (OMG...)")
-                        sleep(2)
+                    life -= 1
+                    if life == 0:
+                        print("You don't have enough life sorry! Goodbye!")
+                        False
                         start_menu()
-        except ValueError:
-            print("Incorret Value!")
+                    else:
+                        print("Do you want to play again? One life is down! \n Press 'y' for again! \n Press 'n' for go to the main menu!")
+                        if getch() == "y":
+                            continue
+                        else:
+                            print("Nothing problem! :D (OMG...)")
+                            sleep(2)
+                            start_menu()
+            except ValueError:
+                print("Incorret Value!")
+        else:
+            guess_number = input("How many odd ones you can see on the table?")
+            try:
+                if int(guess_number) == random_number:
+                    boolen = False
+                    print("That correct! You're awesome!")
+                    return "yes"
+                else:
+                    life -= 1
+                    if life == 0:
+                        print("You don't have enough life sorry! Goodbye!")
+                        False
+                        start_menu()
+                    else:
+                        print("Do you want to play again? One life is down! \n Press 'y' for again! \n Press 'n' for go to the main menu!")
+                        if getch() == "y":
+                            continue
+                        else:
+                            print("Nothing problem! :D (OMG...)")
+                            sleep(2)
+                            start_menu()
+            except ValueError:
+                print("Incorret Value!")
 
 
 """def fixer_game_two():
@@ -286,8 +303,9 @@ def final_musicar_game(num):
         while True:
             key = getch().lower()
             if key == "a":
-                p = vlc.MediaPlayer("flute_a.mp3")
-                p.play()
+                mixer.init()
+                mixer.music.load("flute_s.mp3")
+                mixer.music.play()
             elif key == "s":
                 p = vlc.MediaPlayer("flute_s.mp3")
                 p.play()
@@ -348,7 +366,7 @@ def final_musicar_game(num):
         while True:
             key = getch().lower()
             if key == "a":
-                p = vlc.MediaPlayer("piano_a.mp3")
+                p = vlc.MediaPlayer("piano_s.mp3")
                 p.play()
             elif key == "s":
                 p = vlc.MediaPlayer("piano_s.mp3")
