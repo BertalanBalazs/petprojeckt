@@ -154,56 +154,35 @@ def fixer_game():
             print(''.join(row))
         if getch().lower() == "s":
             print(random_number)
-            guess_number = input("How many odd ones you can see on the table?")
-            try:
-                if int(guess_number) == random_number:
-                    boolen = False
-                    print("That correct! You're awesome!")
-                    return "yes"
+        guess_number = input("How many odd ones you can see on the table?")
+        try:
+            if int(guess_number) == random_number:
+                p = vlc.MediaPlayer("nevetés2.mp3")
+                p.play()
+                sleep(5)
+                boolen = False
+                print("That correct! You're awesome!")
+                return "yes"
+            else:
+                p = vlc.MediaPlayer("nevetés2.mp3")
+                p.play()
+                sleep(5)
+                life -= 1
+                if life == 0:
+                    print("You don't have enough life sorry! Goodbye!")
+                    False
+                    start_menu()
                 else:
-                    life -= 1
-                    if life == 0:
-                        print("You don't have enough life sorry! Goodbye!")
-                        False
-                        start_menu()
+                    print("Do you want to play again? One life is down! \n Press 'y' for again! \n Press 'n' for go to the main menu!")
+                    if getch() == "y":
+                        continue
                     else:
-                        print("Do you want to play again? One life is down! \n Press 'y' for again! \n Press 'n' for go to the main menu!")
-                        if getch() == "y":
-                            continue
-                        else:
-                            print("Nothing problem! :D (OMG...)")
-                            sleep(2)
-                            start_menu()
-            except ValueError:
-                print("Incorret Value!")
-        else:
-            guess_number = input("How many odd ones you can see on the table?")
-            try:
-                if int(guess_number) == random_number:
-                    p = vlc.MediaPlayer("nevetés2.mp3")
-                    p.play()
-                    boolen = False
-                    print("That correct! You're awesome!")
-                    return "yes"
-                else:
-                    p = vlc.MediaPlayer("nevetés2.mp3")
-                    p.play()
-                    life -= 1
-                    if life == 0:
-                        print("You don't have enough life sorry! Goodbye!")
-                        sleep(5)
-                        False
+                        print("Nothing problem! :D (OMG...)")
+                        sleep(2)
                         start_menu()
-                    else:
-                        print("Do you want to play again? One life is down! \n Press 'y' for again! \n Press 'n' for go to the main menu!")
-                        if getch() == "y":
-                            continue
-                        else:
-                            print("Nothing problem! :D (OMG...)")
-                            sleep(2)
-                            start_menu()
-            except ValueError:
-                print("Incorret Value!")
+        except ValueError:
+            print("Incorret Value!")
+        
 
 #A LÉTRA !
 def final_musicar_game(num):
