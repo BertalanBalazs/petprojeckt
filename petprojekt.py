@@ -180,22 +180,21 @@ def fixer_game():
             guess_number = input("How many odd ones you can see on the table?")
             try:
                 if int(guess_number) == random_number:
+                    p = vlc.MediaPlayer("nevetés2.mp3")
+                    p.play()
                     boolen = False
                     print("That correct! You're awesome!")
                     return "yes"
                 else:
+                    p = vlc.MediaPlayer("nevetés2.mp3")
+                    p.play()
                     life -= 1
                     if life == 0:
-                        p = vlc.MediaPlayer("nevetés2.mp3")
-                        p.play()
-                        sleep(7)
                         print("You don't have enough life sorry! Goodbye!")
+                        sleep(5)
                         False
                         start_menu()
                     else:
-                        p = vlc.MediaPlayer("nevetés2.mp3")
-                        p.play()
-                        sleep(7)
                         print("Do you want to play again? One life is down! \n Press 'y' for again! \n Press 'n' for go to the main menu!")
                         if getch() == "y":
                             continue
@@ -313,7 +312,8 @@ def finish_game(num):
         congratulions_player('good_violin.mp3', num)
     else:
         print("I'm disappointed in you! Jimmy is unrepairable!!")
-        congratulions_player('zámbó.mp3', num)
+        sleep(5)
+        congratulions_player('Zámbó.mp3', num)
 
 
 def congratulions_player(songname, num):
